@@ -1,0 +1,140 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class DungeonCharacter : MonoBehaviour
+{
+	// variables for movement
+	public bool isFacingRight = true;
+	[SerializeField] private float smoothingTime = .05f;
+
+	// variables for jumping
+	public float jumpForce = 400f;                      
+	public LayerMask groundLayer;                          
+	public Transform groundCheck;
+
+	const float groundedRadius = .2f; 
+	private bool isGrounded;            
+	const float ceilingRadius = .2f; 
+
+	private Vector3 inputVelocity = Vector3.zero;
+	public bool isAlive = true;
+
+	// variables for attack/damage
+	public bool isAttacked = false;
+	public bool isAttacking = false;
+
+	// events for attack
+	public UnityEvent OnDeathEvent;
+	public UnityEvent EnemyAttackEvent;
+
+	// events for movement
+	public UnityEvent OnLandEvent;
+
+	private Rigidbody2D rb;
+
+	private void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+		rb.gravityScale = 0;
+
+		if (OnDeathEvent == null)
+			OnDeathEvent = new UnityEvent();
+
+		if (EnemyAttackEvent == null)
+			EnemyAttackEvent = new UnityEvent();
+
+		if (OnLandEvent == null)
+			OnLandEvent = new UnityEvent();
+	}
+
+
+	public void Move(float v, bool jump)
+	{
+		Vector3 targetVelocity = new Vector2(v * 10f, 0);
+
+		rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref inputVelocity, smoothingTime);
+
+		if (v > 0 && !isFacingRight)
+		{
+			Flip();
+		}
+
+		else if (v < 0 && isFacingRight)
+		{
+			Flip();
+		}
+
+		if (isGrounded && jump)
+        {
+			rb.gravityScale = 1;
+			isGrounded = false;
+			rb.AddForce(new Vector2(0f, jumpForce));
+		}
+	}
+
+	private void FixedUpdate()
+	{
+		bool wasGrounded = isGrounded;
+		isGrounded = false;
+
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, groundLayer);
+
+		foreach (Collider2D c in colliders)
+        {
+			if (c)
+            {
+				Debug.Log("here");
+				rb.gravityScale = 0;
+				isGrounded = true;
+				if (!wasGrounded)
+					OnLandEvent.Invoke();
+				break;
+			}
+        }
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		if (groundCheck != null)
+		{
+			Gizmos.DrawWireSphere(groundCheck.position, groundedRadius);
+		}
+	}
+
+
+	private void Flip()
+	{
+		isFacingRight = !isFacingRight;
+		Vector3 scale = transform.localScale;
+		scale.x *= -1;
+		transform.localScale = scale;
+	}
+
+	public void onEnemyAttack()
+	{
+		EnemyAttackEvent.Invoke();
+	}
+
+	public void onDeath()
+	{
+		OnDeathEvent.Invoke();
+	}
+
+	public void finihsedAttacking()
+	{
+		isAttacking = false;
+	}
+
+	public void finishedTakingDamage()
+	{
+		isAttacked = false;
+	}
+
+	public void onAlive()
+	{
+		isAlive = true;
+	}
+
+}
