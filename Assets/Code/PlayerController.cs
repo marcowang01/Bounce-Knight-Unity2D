@@ -91,15 +91,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void takeDamage()
+    public void takeDamage(int hp)
     {
-        if (hitPoints > 0)
+        if (controller.isAlive)
         {
-            hitPoints -= 1;
-            controller.isAttacked = true;
-            controller.isAttacking = false;
-            animator.SetTrigger("damaged");
-            Debug.Log("player hit");
+            if (hitPoints > hp)
+            {
+                animator.SetTrigger("damaged");
+                controller.isAttacked = true;
+                controller.isAttacking = false;
+                hitPoints -= hp;
+                Debug.Log("Hit Player");
+            }
+            else
+            {
+                controller.isAlive = false;
+            }
         }
     }
 

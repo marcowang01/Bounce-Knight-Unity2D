@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
     private float prevXDisplacement;
     public float minGap = 5;
 
+    public bool jump = false;
+
 
     void Start()
     {
@@ -50,11 +52,13 @@ public class EnemyController : MonoBehaviour
         if (Mathf.Abs(dist) < minGap)
         {
             xDisplacement = 0;
-            if (player.gameObject.transform.position.x < gameObject.transform.position.x && controller.isFacingRight)
+            if (player.gameObject.transform.position.x < gameObject.transform.position.x && controller.isFacingRight
+                && !controller.isAttacking)
             {
                 controller.Flip();
             }
-            else if (player.gameObject.transform.position.x > gameObject.transform.position.x && !controller.isFacingRight)
+            else if (player.gameObject.transform.position.x > gameObject.transform.position.x && !controller.isFacingRight
+                && !controller.isAttacking)
             {
                 controller.Flip();
             }
@@ -76,24 +80,25 @@ public class EnemyController : MonoBehaviour
     {
         if (controller.isAttacking || hitPoints == 0)
         {
-            controller.Move(0, false);
+            controller.Move(0, jump);
         }
         else
         {
-            controller.Move(xDisplacement, false);
+            controller.Move(xDisplacement, jump);
         }
+        jump = false;
     }
 
 
     public void takeDamage(int hp)
     {
+        controller.isAttacked = true;
+        controller.isAttacking = false;
         if (controller.isAlive)
         {
             if (hitPoints > hp)
             {
                 animator.SetTrigger("damaged");
-                controller.isAttacked = true;
-                controller.isAttacking = false;
                 hitPoints -= hp;
                 Debug.Log("Hit Enemy");
             }

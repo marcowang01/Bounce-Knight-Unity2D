@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FireWizardController : MonoBehaviour
 {
-
     public DungeonCharacter dungeonChar;
     public EnemyController controller;
     public Animator animator;
@@ -16,6 +15,8 @@ public class FireWizardController : MonoBehaviour
 
     public Transform attackPoint;
     public float attackRadius = 1f;
+
+    public int attackHitPoints = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class FireWizardController : MonoBehaviour
             PlayerController pc = p.GetComponent<PlayerController>();
             if (pc)
             {
-                pc.takeDamage();
+                pc.takeDamage(attackHitPoints);
             }
         }
     }

@@ -43,7 +43,7 @@ public class DungeonCharacter : MonoBehaviour
 
 	public void Move(float v, bool jump)
 	{
-		if (isAttacking && isGrounded || isAttacked || !isAlive)
+		if ((isAttacking && isGrounded) || isAttacked || !isAlive)
         {
 			v = 0;
         }
