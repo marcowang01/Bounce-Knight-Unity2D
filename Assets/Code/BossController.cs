@@ -19,9 +19,6 @@ public class BossController : MonoBehaviour
 
     public int attackHitPoints = 1;
 
-    public float attackCD = 2.5f;
-    public float attackCDCount = 1;
-
     public float jumpCD = 3f;
     public float jumpCDCount = 0;
     public bool isJumping = false;
@@ -33,7 +30,6 @@ public class BossController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Fire Wizard will move toward player while firing on regular intervals
     private void Update()
     {
         PlayerController player = FindObjectOfType<PlayerController>();
@@ -48,12 +44,11 @@ public class BossController : MonoBehaviour
             jumpCDCount = Time.time + jumpCD;
             isJumping = true;
             controller.jump = true;
-        } else if (Mathf.Abs(dist) < controller.minGap && dungeonChar.isAlive && Time.time > attackCDCount
+        } else if (Mathf.Abs(dist) < controller.minGap && dungeonChar.isAlive
             && !dungeonChar.isAttacked && !dungeonChar.isAttacking && dungeonChar.isGrounded)
         {
             animator.SetTrigger("attack");
             dungeonChar.isAttacking = true;
-            attackCDCount = Time.time + attackCD;
         }
     }
 

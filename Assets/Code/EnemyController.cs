@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        // follows player
         PlayerController player = FindObjectOfType<PlayerController>();
         if (player.gameObject.transform.position.x < gameObject.transform.position.x && xDisplacement > 0)
         {
@@ -48,6 +49,7 @@ public class EnemyController : MonoBehaviour
             prevXDisplacement = xDisplacement;
         }
 
+        // stops when enemy gets too close and flip facing dir accordingly
         float dist = player.gameObject.transform.position.x - gameObject.transform.position.x;
         if (Mathf.Abs(dist) < minGap)
         {
@@ -68,6 +70,7 @@ public class EnemyController : MonoBehaviour
             xDisplacement = prevXDisplacement;
         }
 
+        // make sure enemy doesn't run off the map
         animator.SetFloat("speed", Mathf.Abs(xDisplacement));
         if ((gameObject.transform.position.x < -8 && xDisplacement < 0)
             || (gameObject.transform.position.x > 8 && xDisplacement > 0))
