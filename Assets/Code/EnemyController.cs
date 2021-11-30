@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (controller.isAttacking || hitPoints == 0)
+        if ((controller.isAttacking && controller.isGrounded) || hitPoints == 0)
         {
             controller.Move(0, jump);
         }

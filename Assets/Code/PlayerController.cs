@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Attack") && Time.time > attackCDCount && !controller.isAttacked)
         {
+            controller.isAttacking = true;
             animator.SetTrigger("attack");
             attackCDCount = Time.time + attackCD;
         }

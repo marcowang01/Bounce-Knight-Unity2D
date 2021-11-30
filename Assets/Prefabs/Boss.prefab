@@ -302,7 +302,7 @@ MonoBehaviour:
   attackPoint3: {fileID: 4184309373708791919}
   attackRadius1: 1.3
   attackRadius2: 2.55
-  attackRadius3: 2.99
+  attackRadius3: 3.03
   attackHitPoints: 3
   jumpCD: 7
   jumpCDCount: 2

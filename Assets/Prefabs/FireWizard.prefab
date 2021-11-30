@@ -139,7 +139,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 5093228781460943112}
-  isGrounded: 0
+  isGrounded: 1
   isAttacked: 0
   isAttacking: 0
   isAlive: 1
@@ -166,6 +166,7 @@ MonoBehaviour:
   hitPoints: 15
   speed: 0.45
   minGap: 3
+  jump: 0
 --- !u!95 &5093228780308843436
 Animator:
   serializedVersion: 3
@@ -223,6 +224,7 @@ MonoBehaviour:
     m_Bits: 128
   attackPoint: {fileID: 5093228779891114183}
   attackRadius: 1.26
+  attackHitPoints: 1
 --- !u!50 &5093228780308843414
 Rigidbody2D:
   serializedVersion: 4
