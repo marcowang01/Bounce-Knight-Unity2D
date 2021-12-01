@@ -11,9 +11,6 @@ public class EnemyController : MonoBehaviour
     public int pointsPerHp = 1;
     public int pointsPerDeath = 5;
 
-    public int maxHitPoints = 3;
-    public int hitPoints = 3;
-
     // variables for movement
     public float speed = 10;
     private float xDisplacement;
@@ -34,6 +31,10 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.checkGameOver())
+        {
+            return;
+        }
         // follows player
         PlayerController player = FindObjectOfType<PlayerController>();
         if (player.gameObject.transform.position.x < gameObject.transform.position.x && xDisplacement > 0)
@@ -81,7 +82,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((controller.isAttacking && controller.isGrounded) || hitPoints == 0)
+        if ((controller.isAttacking && controller.isGrounded) || controller.hitPoints == 0)
         {
             controller.Move(0, jump);
         }
@@ -99,16 +100,17 @@ public class EnemyController : MonoBehaviour
         controller.isAttacking = false;
         if (controller.isAlive)
         {
-            if (hitPoints > hp)
+            if (controller.hitPoints > hp)
             {
                 animator.SetTrigger("damaged");
-                hitPoints -= hp;
-                Debug.Log("Hit Enemy");
+                controller.hitPoints -= hp;
             }
             else
             {
+                controller.hitPoints = 0;
                 animator.SetTrigger("die");
                 controller.isAlive = false;
+                GameManager.setGameWin();
             }
         }
     }

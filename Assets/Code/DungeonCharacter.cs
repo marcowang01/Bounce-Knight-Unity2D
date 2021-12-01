@@ -24,6 +24,11 @@ public class DungeonCharacter : MonoBehaviour
 	public bool isAttacking = false;
 	public bool isAlive = true;
 
+	// varaibles for health bar
+	public int maxHitPoints = 3;
+	public int hitPoints = 3;
+	public Sprite healthBarIcon;
+
 
 	// events for movement
 	public UnityEvent OnLandEvent;

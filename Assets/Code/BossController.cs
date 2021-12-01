@@ -32,6 +32,10 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.checkGameOver())
+        {
+            return;
+        }
         PlayerController player = FindObjectOfType<PlayerController>();
         float dist = player.gameObject.transform.position.x - gameObject.transform.position.x;
 
@@ -49,6 +53,11 @@ public class BossController : MonoBehaviour
         {
             animator.SetTrigger("attack");
             dungeonChar.isAttacking = true;
+        }
+
+        if (dungeonChar.isGrounded)
+        {
+            animator.SetBool("isJumping", false);
         }
     }
 
@@ -69,7 +78,7 @@ public class BossController : MonoBehaviour
     public void Attack2()
     {
         Collider2D[] player = Physics2D.OverlapCapsuleAll(
-            attackPoint1.position, new Vector2(attackRadius1 * 2, attackRadius1), CapsuleDirection2D.Horizontal, 0, playerLayer);
+            attackPoint2.position, new Vector2(attackRadius2 * 2, attackRadius2), CapsuleDirection2D.Horizontal, 0, playerLayer);
         foreach (Collider2D p in player)
         {
             PlayerController pc = p.GetComponent<PlayerController>();
@@ -83,7 +92,7 @@ public class BossController : MonoBehaviour
     public void Attack3()
     {
         Collider2D[] player = Physics2D.OverlapCapsuleAll(
-            attackPoint1.position, new Vector2(attackRadius1 * 2, attackRadius1), CapsuleDirection2D.Horizontal, 45, playerLayer);
+            attackPoint3.position, new Vector2(attackRadius3 * 2, attackRadius3), CapsuleDirection2D.Horizontal, 45, playerLayer);
         foreach (Collider2D p in player)
         {
             PlayerController pc = p.GetComponent<PlayerController>();

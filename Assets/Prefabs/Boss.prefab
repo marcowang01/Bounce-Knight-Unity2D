@@ -70,11 +70,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4184309373609762527}
   - component: {fileID: 4184309373609762526}
-  - component: {fileID: 4184309373609762525}
-  - component: {fileID: 4184309373609762524}
   - component: {fileID: 4184309373609762531}
   - component: {fileID: 4184309373609762530}
   - component: {fileID: 4184309373609762520}
+  - component: {fileID: 4184309373609762524}
+  - component: {fileID: 4184309373609762525}
   - component: {fileID: 4184309373609762521}
   m_Layer: 8
   m_Name: Boss
@@ -91,7 +91,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4184309373609762529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.55, y: -2.88, z: 1}
+  m_LocalPosition: {x: 8, y: -2.88, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4184309372821564642}
@@ -122,77 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4184309373609762525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4184309373609762529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cfa255784e40ac4f983ae0e02adc933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 4184309373609762524}
-  animator: {fileID: 4184309373609762530}
-  pointsPerHp: 1
-  pointsPerDeath: 5
-  maxHitPoints: 26
-  hitPoints: 26
-  speed: 1
-  minGap: 3
-  jump: 0
---- !u!114 &4184309373609762524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4184309373609762529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fb8694478934e541847bca077a2bce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFacingRight: 1
-  smoothingTime: 0.05
-  jumpForce: 1000
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheck: {fileID: 4184309372821564642}
-  isGrounded: 1
-  isAttacked: 0
-  isAttacking: 0
-  isAlive: 1
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4184309373609762521}
-        m_TargetAssemblyTypeName: BossController, Assembly-CSharp
-        m_MethodName: OnLanding
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4184309373609762521}
-        m_TargetAssemblyTypeName: BossController, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!212 &4184309373609762531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -279,6 +208,78 @@ CapsuleCollider2D:
   m_Offset: {x: 0.039518952, y: 0.12945244}
   m_Size: {x: 0.7191031, y: 2.2309074}
   m_Direction: 0
+--- !u!114 &4184309373609762524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184309373609762529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb8694478934e541847bca077a2bce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFacingRight: 1
+  smoothingTime: 0.05
+  jumpForce: 1000
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheck: {fileID: 4184309372821564642}
+  isGrounded: 1
+  isAttacked: 0
+  isAttacking: 0
+  isAlive: 1
+  maxHitPoints: 30
+  hitPoints: 30
+  healthBarIcon: {fileID: 4723107735738678597, guid: 622349090240398459033f69a8ac390e, type: 3}
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4184309373609762521}
+        m_TargetAssemblyTypeName: BossController, Assembly-CSharp
+        m_MethodName: OnLanding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4184309373609762521}
+        m_TargetAssemblyTypeName: BossController, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4184309373609762525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184309373609762529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfa255784e40ac4f983ae0e02adc933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4184309373609762524}
+  animator: {fileID: 4184309373609762530}
+  pointsPerHp: 1
+  pointsPerDeath: 5
+  speed: 1
+  minGap: 3
+  jump: 0
 --- !u!114 &4184309373609762521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,10 +303,10 @@ MonoBehaviour:
   attackPoint3: {fileID: 4184309373708791919}
   attackRadius1: 1.3
   attackRadius2: 2.55
-  attackRadius3: 3.03
+  attackRadius3: 3
   attackHitPoints: 3
-  jumpCD: 7
-  jumpCDCount: 2
+  jumpCD: 5
+  jumpCDCount: 0
   isJumping: 0
 --- !u!1 &4184309373708791918
 GameObject:
@@ -331,7 +332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4184309373708791918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 1.23, z: 0}
+  m_LocalPosition: {x: 0.83, y: 1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4184309373609762527}

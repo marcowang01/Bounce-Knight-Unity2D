@@ -35,12 +35,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.checkGameOver())
-        {
-            animator.SetFloat("speed", 0);
-            animator.SetBool("isJumping", false);
-            return;
-        }
         xDisplacement = Input.GetAxis("Horizontal") * speed;
         animator.SetFloat("speed", xDisplacement * xDisplacement);
 
@@ -60,20 +54,14 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("attack");
             attackCDCount = Time.time + attackCD;
         }
-
+        
         if (!controller.isGrounded)
             animator.SetBool("isJumping", true);
-        else
-            animator.SetBool("isJumping", false);
     }
 
 
     private void FixedUpdate()
     {
-        if (GameManager.checkGameOver())
-        {
-            return;
-        }
         controller.Move(xDisplacement * Time.fixedDeltaTime, jump);
         jump = false;
     }

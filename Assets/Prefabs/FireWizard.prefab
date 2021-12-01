@@ -143,6 +143,9 @@ MonoBehaviour:
   isAttacked: 0
   isAttacking: 0
   isAlive: 1
+  maxHitPoints: 15
+  hitPoints: 15
+  healthBarIcon: {fileID: 4723107735738678597, guid: ae16a2d81fbe94a4293d11ef389efad0, type: 3}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -162,8 +165,6 @@ MonoBehaviour:
   animator: {fileID: 5093228780308843436}
   pointsPerHp: 1
   pointsPerDeath: 5
-  maxHitPoints: 15
-  hitPoints: 15
   speed: 0.45
   minGap: 3
   jump: 0
@@ -218,7 +219,7 @@ MonoBehaviour:
   controller: {fileID: 5093228780308843434}
   animator: {fileID: 5093228780308843436}
   attackCD: 2
-  CDCount: 0
+  CDCount: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
