@@ -36,6 +36,8 @@ public class HealthBarManager : MonoBehaviour
             }
         } else
         {
+            icon.sprite = character.healthBarIcon;
+            maxHP = character.maxHitPoints;
             hp = character.hitPoints;
             if (character && bar)
             {
