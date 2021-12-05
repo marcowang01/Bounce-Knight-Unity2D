@@ -240,7 +240,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1340576026}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RestartButton
+        m_MethodName: pressInstructionsButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3338,8 +3338,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 80.73}
-  m_SizeDelta: {x: 921.18, y: 243.46}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1200, y: 243.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &761045696
 MonoBehaviour:
@@ -3363,18 +3363,23 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 50
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press left ctrl or space to jump
+  m_Text: 'Press ''w'' or space to jump
+
+    Press ''a'' to move left and ''d'' to
+    move right
+
+    Press ''j'' to attack'
 --- !u!222 &761045697
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3776,6 +3781,7 @@ MonoBehaviour:
   gameOverText: {fileID: 2028513140}
   GameOverBg: {fileID: 1148979006}
   InstructionsBg: {fileID: 845467358}
+  InstructionsButtonText: {fileID: 1368703691}
 --- !u!4 &1340576027
 Transform:
   m_ObjectHideFlags: 0

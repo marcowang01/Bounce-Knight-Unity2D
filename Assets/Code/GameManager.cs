@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;
         singleton.GameOverBg.SetActive(false);
+        singleton.InstructionsBg.SetActive(false);
         Time.timeScale = 1;
     }
 
