@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Text gameOverText;
     public static GameManager singleton;
     public GameObject GameOverBg;
+    public GameObject InstructionsBg;
+    public Text InstructionsButtonText;
 
     private void Start()
     {
@@ -48,18 +50,44 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    public void ShowInstructions()
+    {
+
+        if (isGameOver)
+        {
+            InstructionsButtonText.text = "Restart";
+        } else
+        {
+            InstructionsButtonText.text = "Resume";
+        }
+        singleton.InstructionsBg.SetActive(true);
+        singleton.GameOverBg.SetActive(false);
+    }
+
     public void Pause()
     {
+        isPaused = true;
         Setup();
         singleton.gameOverText.text = "Game Paused";
         Time.timeScale = 0;
-        isPaused = true;
     }
     public void Resume()
     {
+        isPaused = false;
         singleton.GameOverBg.SetActive(false);
         Time.timeScale = 1;
-        isPaused = false;
+    }
+
+    public void pressInstructionsButton()
+    {
+        if(isGameOver)
+        {
+            RestartButton();
+        } else
+        {
+            Resume();
+        }
+        singleton.InstructionsBg.SetActive(false);
     }
 
     private void Update()
