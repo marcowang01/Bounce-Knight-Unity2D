@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public Text gameOverText;
     public static GameManager singleton;
     public GameObject GameOverBg;
-    public GameObject InstructionsBg;
-    public Text InstructionsButtonText;
+    public Button ContinueButton;
+    public Text ContinueButtonText;
 
     private void Start()
     {
@@ -47,56 +47,53 @@ public class GameManager : MonoBehaviour
 
     public void RestartButton()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ShowInstructions()
+    public void MenuButton()
     {
-
-        if (isGameOver)
-        {
-            InstructionsButtonText.text = "Restart";
-        } else
-        {
-            InstructionsButtonText.text = "Resume";
-        }
-        singleton.InstructionsBg.SetActive(true);
-        singleton.GameOverBg.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
     }
+
 
     public void Pause()
     {
         isPaused = true;
         Setup();
-        singleton.gameOverText.text = "Game Paused";
+        singleton.gameOverText.text = "PAUSED";
         Time.timeScale = 0;
     }
     public void Resume()
     {
         isPaused = false;
         singleton.GameOverBg.SetActive(false);
-        singleton.InstructionsBg.SetActive(false);
         Time.timeScale = 1;
     }
 
-    public void pressInstructionsButton()
+    public void pressContinueButton()
     {
-        if(isGameOver)
+        if (isGameOver)
         {
             RestartButton();
         } else
         {
             Resume();
         }
-        singleton.InstructionsBg.SetActive(false);
     }
 
     private void Update()
     {
-        if(isGameOver)
+        if (isGameOver)
         {
+            ContinueButtonText.text = "RESTART";
             return;
         }
+        else
+        {
+            ContinueButtonText.text = "RESUME";
+        }
+        
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(isPaused)

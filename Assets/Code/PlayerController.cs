@@ -26,6 +26,13 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 spawnPos;
 
+    // audio
+    public AudioSource source;
+    public AudioClip attackMiss;
+    public AudioClip attackHit;
+    public AudioClip gotHit;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             controller.isAttacking = true;
             animator.SetTrigger("attack");
+            source.PlayOneShot(attackMiss);
             attackCDCount = Time.time + attackCD;
         }
 
@@ -99,13 +107,16 @@ public class PlayerController : MonoBehaviour
             EnemyController ec = e.GetComponent<EnemyController>();
             if (ec)
             {
+                source.PlayOneShot(attackHit);
                 ec.takeDamage(hp);
+                return;
             }
         }
     }
 
     public void takeDamage(int hp)
     {
+        source.PlayOneShot(gotHit);
         if (controller.isAlive)
         {
             if (controller.hitPoints > hp)

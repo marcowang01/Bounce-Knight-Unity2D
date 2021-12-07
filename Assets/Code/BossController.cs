@@ -23,6 +23,12 @@ public class BossController : MonoBehaviour
     public float jumpCDCount = 0;
     public bool isJumping = false;
 
+    // audio
+    public AudioSource source;
+    public AudioClip attack1;
+    public AudioClip attack2;
+    public AudioClip attack3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +94,20 @@ public class BossController : MonoBehaviour
             }
         }
     }
+
+    public void attack1Sound()
+    {
+        source.PlayOneShot(attack1);
+    }
+    public void attack2Sound()
+    {
+        source.PlayOneShot(attack2);
+    }
+    public void attack3Sound()
+    {
+        source.PlayOneShot(attack3);
+    }
+
 
     public void Attack3()
     {

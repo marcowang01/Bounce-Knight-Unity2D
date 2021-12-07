@@ -18,6 +18,10 @@ public class FireWizardController : MonoBehaviour
 
     public int attackHitPoints = 1;
 
+    // audio
+    public AudioSource source;
+    public AudioClip attack1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +40,10 @@ public class FireWizardController : MonoBehaviour
         }
     }
 
+    public void AttackSound()
+    {
+        source.PlayOneShot(attack1);
+    }
     public void Attack()
     {
         Collider2D[] player = Physics2D.OverlapCapsuleAll(
