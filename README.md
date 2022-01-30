@@ -7,9 +7,9 @@ Final project for CS 376
 
 CREDITS:
 
-Sounds:
-https://mixkit.co/free-sound-effects/sword/
-Player + background asset:
-Gothicvania Patreon's Collection by ansimuz
-Wizard + boss asset:
-LuizMelo - itch.io
+Sounds:<br>
+https://mixkit.co/free-sound-effects/sword/ <br>
+Player + background asset: <br>
+https://ansimuz.itch.io/gothicvania-patreon-collection <br>
+Wizard + boss asset: <br>
+https://luizmelo.itch.io/
